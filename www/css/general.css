@@ -1,11 +1,13 @@
+
 #minimapa {
+	text-align: center;
 	position:absolute;
-	width: 90%;
-	left: 5%;
+	
+	left: 17%;
 	top: 10px;
 	height: 30px;
 	background-color: darkgrey;
-
+	border-radius: 3px;
 }
 
 .cuadranteHolder{
@@ -48,7 +50,7 @@
 	background-color: #333;
 }
 
-.central{
+#central{
 	position: absolute;
 	width: 97%;
 	right: 0;
@@ -71,3 +73,75 @@
 
 
 
+.visualizador{
+	position: absolute;
+	
+	background-color: orange;
+}
+
+.turnosRow{
+	width: 100%;
+	background-color: blue; 
+}
+
+.turno{
+	float: left;
+	width: 150px;
+	margin: 3px;
+	background-color: lightblue;
+}
+
+.puestoHeader{
+	width: 146;
+	margin-right: 2px;
+	margin-left: 2px;
+	margin-top: 2px;
+	background-color: #DDD;
+	height: 12px;
+	font-size: 10px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.puestoSlot{
+	position: relative;
+	width: 146px;
+	margin-right: 2px;
+	margin-left: 2px;
+	background-color: #DDD;
+	height: 15px;
+	font-size: 14px;
+	text-align: center;
+	overflow: hidden;
+}
+
+.puestoSlotArea{
+	position: absolute;
+	width: 120px;
+	left: 13px;
+	margin-right: 2px;
+	margin-left: 2px;
+	background-color: #779;
+border-radius: 8px;
+	height: 11px;
+	font-size: 10px;
+	text-align: center;
+	overflow: hidden;
+	box-shadow: inset 2px 2px 5px 0 darkgreen;
+}
+
+.miniDia{
+	float: left;
+	width: 25px;
+	height: 22px;
+	border-radius: 5px;
+	background-color: #EEE;
+	margin: 2px;
+	text-align: center;
+	padding-top: 3px;
+}
+
+.miniDia.selected{
+	background-color: #444;
+	color:white;
+}

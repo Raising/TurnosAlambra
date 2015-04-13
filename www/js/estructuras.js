@@ -4,8 +4,70 @@ var ESTRUCTURA = {};
 ESTRUCTURA.Visualizador = function (params) {
 	var visualizador = this;
 	this.dias = [];
-	
+	this.numDias = 31;
+
+	for (var i = 0;i < this.numDias; i++){
+		var newdia = new ESTRUCTURA.Dia({diaSemana:i%7,date:"dia: "+ (i+1)});
+		var turnoM = new ESTRUCTURA.Turno({tipo:"maniana",date:"dia: "+ (i+1)});
+		var turnoT = new ESTRUCTURA.Turno({tipo:"tarde",date:"dia: "+ (i+1)});
+		var turnoN = new ESTRUCTURA.Turno({tipo:"noche",date:"dia: "+ (i+1)});
+		
+		turnoM.instertPuestosFromObject(TEMPDATA.lugares);
+		turnoT.instertPuestosFromObject(TEMPDATA.lugares);
+		turnoN.instertPuestosFromObject(TEMPDATA.lugares);
+
+		newdia.setTurno("maniana",	turnoM);
+		newdia.setTurno("tarde",	turnoT);
+		newdia.setTurno("noche",	turnoN);
+
+		visualizador.dias.push(newdia);
+	}
+
+	console.log(this);
+
 	this.html = $("<div class = 'visualizador'></div>");
+	this.html.width(this.numDias* 156);
+	this.currentDay  = 1;
+	Draggable.create(visualizador.html, {
+			bounds:$("#central"),
+			type:"y,x",
+			//edgeResistance :0,
+			throwProps:true,
+			zIndexBoost:false,
+			onDrag:function() {
+	         var xPos = Math.floor((this.x)/(-156)) +1;
+	      
+	       	 if (visualizador.currentDay != xPos){
+	       	 	visualizador.currentDay = xPos;
+	       	 	$(".miniDia").removeClass("selected");
+				$($("#miniMapa").children()[xPos-1]).addClass("selected");
+	       	 }
+	        },
+	        snap: {
+		        x: function(endValue) {
+		        	console.log(endValue);
+		            return Math.floor(endValue/156)* 156;
+		        },
+		         y: function(endValue) {
+		            return endValue;
+		        }
+		    },
+	        onDragEnd:function(){
+	        	var xPos = Math.min(0,Math.floor((this.x/156)+1)*156);
+				
+			
+				
+				TweenMax.to(visualizador.html, 0.25, {x:xPos, ease:Sine.easeOut});
+	        },
+	        onPress:function(){
+	       
+	        	
+	        }
+
+
+
+		});
+
 
 	this.reinsertHtml = function () {
 		this.html.empty();
@@ -14,14 +76,14 @@ ESTRUCTURA.Visualizador = function (params) {
 		var turnosNoche = [];
 
 		for (var i = 0 ; i < visualizador.dias.length; i++){
-			turnoManiana.push(visualizador.dias.getTurno("maniana"));
-			turnoTarde.push(visualizador.dias.getTurno("tarde"));
-			turnoNoche.push(visualizador.dias.getTurno("noche"));
+			turnosManiana.push(visualizador.dias[i].getTurno("maniana"));
+			turnosTarde.push(visualizador.dias[i].getTurno("tarde"));
+			turnosNoche.push(visualizador.dias[i].getTurno("noche"));
 		}
 
-		var rowManiana = new ESTRUCTURA.Row({turnos:turnosManiana});
-		var rowTarde= new ESTRUCTURA.Row({turnos:turnosTarde});
-		var rowNoche= new ESTRUCTURA.Row({turnos:turnosNoche});
+		var rowManiana 	= new ESTRUCTURA.Row({turnos:turnosManiana});
+		var rowTarde	= new ESTRUCTURA.Row({turnos:turnosTarde});
+		var rowNoche	= new ESTRUCTURA.Row({turnos:turnosNoche});
 
 		visualizador.html
 					.append(rowManiana.getHtml)
@@ -61,7 +123,7 @@ ESTRUCTURA.Dia = function (params){
 	this.turnoTarde = {};
 	this.turnoNoche = {};
 	this.date = params.date ? params.date : "00/00/0000";
-	this.diaSemana = paramas.diaSemana ? paramas.diaSemana : 0 ;  // 0  = lunes ; 6 = domingo
+	this.diaSemana = params.diaSemana ? params.diaSemana : 0 ;  // 0  = lunes ; 6 = domingo
 	this.cuadrante = params.cuadrante ? params.cuadrante : "pecis";
 
 	this.setTurno = function(tipo,turno){
@@ -109,11 +171,12 @@ ESTRUCTURA.Turno = function  (params) {
 	this.html = $("<div class='turno'></div>");
 
 	this.instertPuestosFromObject = function(object){
-		var nPuestos = object.puestos.length;
+		var nPuestos = object.length;
 		for (var i = 0; i < nPuestos; i ++){
-			var puesto = new ESTRUCTURA.Puesto(object.puestos[i]);
+			var puesto = new ESTRUCTURA.Puesto(object[i]);
 			turno.puestos.push(puesto);
 		}		
+		turno.reinsertHtml();
 	}
 
 	this.reinsertHtml = function () {
@@ -138,15 +201,15 @@ ESTRUCTURA.Puesto = function(params){
 	this.slots = [];
 
 	this.html = $("<div class='puesto'></div>");
-	this.htmlHeader = $("<div class='puestoHeader'></div>");
-	this.htmlSlot = $("div class='puestoSlot'></div>");
+	this.htmlHeader = $("<div class='puestoHeader'>"+puesto.nombre+"</div>");
+	this.htmlSlot = $("<div class='puestoSlot'></div>");
 
 	this.html
 		.append(this.htmlHeader);
 
 	for (var i = 0 ; i < puesto.slotsMinimos; i ++){
 		var slot = new ESTRUCTURA.Slot();
-		puesto.html.append(slots.getHtml());
+		puesto.html.append(slot.getHtml());
 		puesto.slots.push(slot);
 	}
 
@@ -154,7 +217,7 @@ ESTRUCTURA.Puesto = function(params){
 		return puesto.html;
 	}
 
-	this.reinsertHtml = function() 
+	this.reinsertHtml = function() {
 		puesto.html.empty().
 			append(puesto.htmlHeader);
 		for (var i = 0 ; i < puesto.slots.length; i ++){
@@ -172,8 +235,8 @@ ESTRUCTURA.Puesto = function(params){
 ESTRUCTURA.Slot = function(params){
 	var slot = this;
 	this.linkedElement = {};
-	this.html = $("div class='puestoSlot'></div>");
-	this.htmlSetArea = $("div class='puestoSlotArea'></div>");
+	this.html = $("<div class='puestoSlot'></div>");
+	this.htmlSetArea = $("<div class='puestoSlotArea'></div>");
 
 	this.html
 		.append(this.htmlSetArea);
