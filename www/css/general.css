@@ -48,6 +48,7 @@
 	left:0.25%;
 	top :0;
 	background-color: #333;
+	text-align: center;
 }
 
 #central{
@@ -58,6 +59,8 @@
 	overflow: hidden;
 	height: 100%;
 	background-color: #EEE;
+	
+
 }
 
 .centralOverStyle{
@@ -76,40 +79,73 @@
 .visualizador{
 	position: absolute;
 	
-	background-color: orange;
+	background-color: #888;
+	min-height: 520px;
+	
+	
 }
 
 .turnosRow{
 	width: 100%;
-	background-color: blue; 
-}
+
+	overflow: hidden;
+	position: absolute;	
+	/*perspective: 500px;*/
+	}
 
 .turno{
 	float: left;
-	width: 150px;
-	margin: 3px;
+	width: 50px;
+	min-height: 520px;
+	margin-left: 2px;
 	background-color: lightblue;
+	overflow: hidden;
+	border-bottom: 1.5px solid brown;
+	border-top: 1.5px solid brown;
 }
+.puesto{
+	position: relative;
+	height: 28px;
+	margin-right: 2px;
+}	
+
 
 .puestoHeader{
 	width: 146;
+	position: absolute;
 	margin-right: 2px;
 	margin-left: 2px;
 	margin-top: 2px;
+	
+	right: 90px;
 	background-color: #DDD;
 	height: 12px;
+	
 	font-size: 10px;
 	text-align: center;
 	overflow: hidden;
 }
+.puestoSlotContainer{
+	position: relative;
+	width: 90px;
+	float: right;
+	background-color: #888;
+	
+	font-size: 14px;
+	text-align: center;
+	overflow: hidden;
+
+}
+
+
 
 .puestoSlot{
 	position: relative;
-	width: 146px;
-	margin-right: 2px;
-	margin-left: 2px;
+	width: 23px;
+	float: right;
+	margin: 1px;
 	background-color: #DDD;
-	height: 15px;
+	height: 23px;
 	font-size: 14px;
 	text-align: center;
 	overflow: hidden;
@@ -117,18 +153,29 @@
 
 .puestoSlotArea{
 	position: absolute;
-	width: 120px;
-	left: 13px;
-	margin-right: 2px;
-	margin-left: 2px;
+	width: 90%;
+	left: 5%;
+	top: 2px;	
 	background-color: #779;
-border-radius: 8px;
-	height: 11px;
-	font-size: 10px;
+	border-radius: 5px;
+	height: 19px;
 	text-align: center;
-	overflow: hidden;
+	
 	box-shadow: inset 2px 2px 5px 0 darkgreen;
 }
+
+.puestoSlotArea.bussy{
+	background-color: darkgreen;
+	box-shadow: inset -1px -1px 2px 0 black, inset 1px 1px 2px 0 white;
+
+}
+
+.puestoColapsed{
+	text-align: center;
+	border-radius: 5px;
+	background-color: #AAA;
+}
+
 
 .miniDia{
 	float: left;
@@ -144,4 +191,34 @@ border-radius: 8px;
 .miniDia.selected{
 	background-color: #444;
 	color:white;
+}
+
+
+
+.sideButton{
+	background-color: #EEE;
+	width: 25px;
+	height: 22px;
+	padding-top: 3px;
+	border-radius: 5px;
+	text-align: center;
+	margin-left: 3px;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.sideButton.selected{
+	background-color: #444;
+	color: white;
+}
+
+
+.personaIcon{
+
+	background-color: red;
+	box-shadow: inset 1px 1px 2px 0 white;
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	border-radius: 15px;
 }
