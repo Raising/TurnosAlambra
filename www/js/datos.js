@@ -4,13 +4,11 @@ TEMPDATA.lugares = [
 {nombre:"ALCAZABA",							slotsMaximos:1,					slotsMinimos:1},
 {nombre:"ARRAYANES",						slotsMaximos:1,					slotsMinimos:1},
 {nombre:"ATRIO",							slotsMaximos:3,					slotsMinimos:3},
-{nombre:"BAJAS",							slotsMaximos:1,					slotsMinimos:1},
 {nombre:"BAÑO MEZQUITA",					slotsMaximos:1,					slotsMinimos:1},
 {nombre:"C.C.V",							slotsMaximos:2,					slotsMinimos:2},
 {nombre:"ESPACIO DEL MES",					slotsMaximos:1,					slotsMinimos:1},
 {nombre:"JARDINES ALTOS",					slotsMaximos:1,					slotsMinimos:1},
 {nombre:"JARDINES BAJOS",					slotsMaximos:3,					slotsMinimos:3},
-{nombre:"LIBERADO SINDICAL",				slotsMaximos:3,					slotsMinimos:3},
 {nombre:"LINDARAJA",						slotsMaximos:1,					slotsMinimos:1},
 {nombre:"MEXUAR Y PATIO DORADO",			slotsMaximos:1,					slotsMinimos:1},
 {nombre:"PALACIO GENERALIFE",				slotsMaximos:-1,				slotsMinimos:1},
@@ -18,7 +16,6 @@ TEMPDATA.lugares = [
 {nombre:"PARTAL",							slotsMaximos:1,					slotsMinimos:1},
 {nombre:"PATIO DE LA ACEQUIA",				slotsMaximos:2,					slotsMinimos:1},
 {nombre:"PATIO DE LEONES",					slotsMaximos:-1,				slotsMinimos:1},
-{nombre:"REDUCCION DE JORNADA",				slotsMaximos:1,					slotsMinimos:1},
 {nombre:"SECANO",							slotsMaximos:2,					slotsMinimos:2},
 {nombre:"SILLA DEL MORO",					slotsMaximos:-1,				slotsMinimos:1}
 ];
@@ -159,4 +156,3 @@ TEMPDATA.gruposPersonal = [
 ]}
 ];
 
-console.log(TEMPDATA.gruposPersonal);
