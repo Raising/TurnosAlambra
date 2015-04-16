@@ -1,6 +1,5 @@
-var ESTRUCTURA = {};
+var ESTRUCTURA = {}
 
-var GLOBAL = {};
 
 ESTRUCTURA.CabeceraDias = function(params){
 	var cabecera = this;
@@ -53,7 +52,6 @@ ESTRUCTURA.Visualizador = function (params) {
 	this.offset = 190;
 	this.anchoColumna = 52;
 	this.cabeceraDias = new ESTRUCTURA.CabeceraDias({dias:this.dias,ancho:this.anchoColumna,offset:this.offset});
-	this.footerTurnos = new ESTRUCTURA.FooterTurnos();
 	this.visualizadorDetalle = params.detalle;
 
 	console.log(this);
@@ -126,9 +124,9 @@ ESTRUCTURA.Visualizador = function (params) {
 		var turnosNoche = [];
 
 		for (var i = 0 ; i < visualizador.dias.length; i++){
-			turnosManiana.push(visualizador.dias[i].getTurno("Mañana"));
-			turnosTarde.push(visualizador.dias[i].getTurno("Tarde"));
-			turnosNoche.push(visualizador.dias[i].getTurno("Iluminación"));
+			turnosManiana.push(visualizador.dias[i].getTurno("maniana"));
+			turnosTarde.push(visualizador.dias[i].getTurno("tarde"));
+			turnosNoche.push(visualizador.dias[i].getTurno("noche"));
 		}
 
 		visualizador.rowManiana 	= new ESTRUCTURA.Row({turnos:turnosManiana});
@@ -150,10 +148,6 @@ ESTRUCTURA.Visualizador = function (params) {
 
 	this.getCabeceraDiasHtml = function(){
 		return visualizador.cabeceraDias.getHtml();
-	}
-
-	this.getFootTurnosHtml = function(){
-		return visualizador.footerTurnos.getHtml();
 	}
 
 	this.modo = {};
@@ -228,12 +222,12 @@ ESTRUCTURA.VisualizadorDetalle = function (params){
 	var vDetalle = this;
 	this.dia = params.dias[0] ? params.dias[0] : {};
 
-	this.maniana = this.dia.getTurno("Mañana");
-	this.tarde =  this.dia.getTurno("Tarde");
-	this.noche= this.dia.getTurno("Iluminación");
+	this.maniana = this.dia.getTurno("maniana");
+	this.tarde =  this.dia.getTurno("tarde");
+	this.noche= this.dia.getTurno("noche");
 
 	this.turnos = [{},{}];
-	console.log(this);
+
 	this.turnos[0].manianahtml = this.maniana.getDetalle();
 	this.turnos[0].tardehtml = this.tarde.getDetalle();
 	this.turnos[0].nochehtml = this.noche.getDetalle();
@@ -286,9 +280,9 @@ ESTRUCTURA.VisualizadorDetalle = function (params){
 		});
 
 	this.cambioDia = function(dia){
-		var maniana = dia.getTurno("Mañana");
-		var tarde =  dia.getTurno("Tarde");
-		var noche= dia.getTurno("Iluminación");
+		var maniana = dia.getTurno("maniana");
+		var tarde =  dia.getTurno("tarde");
+		var noche= dia.getTurno("noche");
 
 		vDetalle.turnos[(vDetalle.caraActual-1)].manianahtml = maniana.getDetalle();
 		vDetalle.turnos[(vDetalle.caraActual-1)].tardehtml = tarde.getDetalle();
@@ -323,9 +317,9 @@ ESTRUCTURA.VisualizadorDetalle = function (params){
 	this.reinsertHtml = function(){
 		vDetalle.html.empty();
 	
-		vDetalle.maniana=vDetalle.dia.getTurno("Mañana");
-		vDetalle.tarde	= vDetalle.dia.getTurno("Tarde");
-		vDetalle.noche	=vDetalle.dia.getTurno("Iluminación");
+		vDetalle.maniana=vDetalle.dia.getTurno("maniana");
+		vDetalle.tarde	= vDetalle.dia.getTurno("tarde");
+		vDetalle.noche	=vDetalle.dia.getTurno("noche");
 
 		vDetalle.turnos[(vDetalle.caraActual-1)].manianahtml = vDetalle.maniana.getDetalle();
 		vDetalle.turnos[(vDetalle.caraActual-1)].tardehtml = vDetalle.tarde.getDetalle();
@@ -355,10 +349,10 @@ ESTRUCTURA.VisualizadorDetalle = function (params){
 		//animaciones para cambio de estado
 	//	vDetalle.tl.play("maniana");
 		if (vDetalle.modo.actual == "noche"){
-			TweenMax.fromTo(vDetalle.turnos[0].manianahtml, 1.25,  {rotationX:30,y:(-1)*Math.max(600,vDetalle.turnos[(vDetalle.caraActual-1)].manianahtml.height())},{rotationX:0,y:0,transformPerspective:vDetalle.perspectiva,transformOrigin:"100% 100%",ease:Sine.easeOut});	
+			TweenMax.fromTo(vDetalle.turnos[0].manianahtml, 1.25,  {rotationX:-30,y:Math.max(600,vDetalle.turnos[(vDetalle.caraActual-1)].manianahtml.height())},{rotationX:0,y:0,transformPerspective:vDetalle.perspectiva,transformOrigin:"100% 0",ease:Sine.easeOut});	
 			TweenMax.fromTo(vDetalle.turnos[0].nochehtml, 1.25,{rotationX:0,y:0}, {rotationX:-30,y:Math.max(600,vDetalle.turnos[(vDetalle.caraActual-1)].manianahtml.height()),transformPerspective:vDetalle.perspectiva, transformOrigin:"100% 0",ease:Sine.easeOut});
 			
-			TweenMax.fromTo(vDetalle.turnos[1].manianahtml, 1.25,  {rotationX:30,y:(-1)*Math.max(600,vDetalle.turnos[(vDetalle.caraActual-1)].manianahtml.height())},{rotationX:0,y:0,transformPerspective:vDetalle.perspectiva,transformOrigin:"100% 100%",ease:Sine.easeOut});	
+			TweenMax.fromTo(vDetalle.turnos[1].manianahtml, 1.25,  {rotationX:-30,y:Math.max(600,vDetalle.turnos[(vDetalle.caraActual-1)].manianahtml.height())},{rotationX:0,y:0,transformPerspective:vDetalle.perspectiva,transformOrigin:"100% 0",ease:Sine.easeOut});	
 			TweenMax.fromTo(vDetalle.turnos[1].nochehtml, 1.25,{rotationX:0,y:0}, {rotationX:-30,y:Math.max(600,vDetalle.turnos[(vDetalle.caraActual-1)].manianahtml.height()),transformPerspective:vDetalle.perspectiva, transformOrigin:"100% 0",ease:Sine.easeOut});
 	
 
@@ -502,7 +496,6 @@ ESTRUCTURA.Dia = function (params){
 	this.turnoManiana = {};
 	this.turnoTarde = {};
 	this.turnoNoche = {};
-	this.turno = {};//[this.turnoManiana,this.turnoTarde,this.turnoNoche];
 	this.date = params.date ? params.date : "00/00/0000";
 	this.diaSemana = params.diaSemana ? params.diaSemana : 0 ;  // 0  = lunes ; 6 = domingo
 	this.cuadrante = params.cuadrante ? params.cuadrante : "pecis";
@@ -520,8 +513,17 @@ ESTRUCTURA.Dia = function (params){
 	}
 
 	this.setTurno = function(tipo,turno){
-		dia.turno[tipo] = turno;
-
+		switch (tipo){
+			case "maniana":
+				dia.turnoManiana = turno;
+			break;
+			case "tarde":
+				dia.turnoTarde = turno;
+			break;
+			case "noche":
+				dia.turnoNoche = turno;
+			break;
+		}
 	}
 
 	this.comprobarIncidencias = function(){
@@ -529,8 +531,17 @@ ESTRUCTURA.Dia = function (params){
 	}
 
 	this.getTurno = function(tipo){
-		
-		return dia.turno[tipo];
+		switch (tipo){
+			case "maniana":
+				return dia.turnoManiana;
+			break;
+			case "tarde":
+				return dia.turnoTarde;
+			break;
+			case "noche":
+				return dia.turnoNoche;
+			break;
+		}
 	}
 }
 
@@ -541,79 +552,18 @@ ESTRUCTURA.Turno = function  (params) {
 	this.tipo = params.tipo ? params.tipo : "maniana";
 	this.date = params.date ? params.date : "00/00/0000";
 	this.cuadrante = params.cuadrante ? params.cuadrante : "pecis"; // sobra
-	this.visualizador = params.visualizador;
-	this.estadisticas = new ESTRUCTURA.EstadisticasTurno();
-	this.diaNum = params.diaNum;
 	this.puestos = [];
 
 	this.html = $("<div class='turno' id='"+params.date+"' ></div>");
 	this.detalle =  $("<div class='turno turnoDetalle'></div>");
 
 	this.instertPuestosFromObject = function(object){
-	
 		var nPuestos = object.length;
 		for (var i = 0; i < nPuestos; i ++){
-			turno.puestos.push(object[i]);
+			var puesto = new ESTRUCTURA.Puesto(object[i]);
+			turno.puestos.push(puesto);
 		}		
-		
 		turno.reinsertHtml();
-	}
-
-	this.asignarPersonal = function(personalDisponible){
-		
-		var personalusado = 0;
-		var numSlots = 0;
-		for (var grupoAptos in turno.puestos[0].gruposAptos){
-				personalusado += personalDisponible[turno.puestos[0].gruposAptos[grupoAptos]].length;
-			}
-
-
-		turno.estadisticas.setPersonal(personalusado);
-		
-		for (var j = turno.puestos.length - 1; j >= 0; j--) {
-
-			var puesto  = turno.puestos[j];
-
-			var personalApto = [];
-			var gruposSizes = [];
-			for (var grupoAptos in puesto.gruposAptos){
-				gruposSizes.push(personalDisponible[puesto.gruposAptos[grupoAptos]].length);
-				personalApto = personalApto.concat(personalDisponible[puesto.gruposAptos[grupoAptos]]);
-			}
-
-
-			//console.log(personalApto.length);
-			for (var k = puesto.slots.length - 1; k >= 0; k--) {
-
-				var slot =  puesto.slots[k];
-				numSlots ++;
-				personalusado--;
-
-				if (personalApto.length == 0){
-				//	console.log("personal apto not found",personalApto);
-				
-				}else{
-					
-
-					var Random = Math.floor((Math.random() * personalApto.length));
-					slot.setLinkedElement(personalApto[Random]);
-					personalApto.splice(Random, 1);
-					for (var t = 0; t<gruposSizes.length;t++){
-						if (Random >= gruposSizes[t]){
-							Random -=  gruposSizes[t];
-						}else{
-							//console.log(personalDisponible[puesto.gruposAptos[t]]);
-							personalDisponible[puesto.gruposAptos[t]].splice(Random,1);
-							gruposSizes[t]--;
-							t = 1000;
-						}
-					}
-				}
-			};
-		};
-	
-		turno.estadisticas.setSlots(numSlots);
-			turno.estadisticas.setBalance(personalusado);
 	}
 
 	this.reinsertHtml = function () {
@@ -624,11 +574,6 @@ ESTRUCTURA.Turno = function  (params) {
 			turno.detalle.append(turno.puestos[i].getDetalle());
 		}
 
-		turno.html.on("click",function(){
-			console.log(GLOBAL.visualizadorActual);
-			GLOBAL.visualizadorActual.gotoDay(turno.diaNum);
-
-		});
 	}
 
 	this.getHtml= function () {
@@ -653,45 +598,15 @@ ESTRUCTURA.Turno = function  (params) {
 	}
 }
 
-ESTRUCTURA.EstadisticasTurno = function(params){
-	var estadisticas = this;
-	this.html = $("<div class='estadisticasTurno'></div>");
-	this.numIndividuos = $("<span class='spanStadisticas'>Personal</spa>");
-	this.numBalance =  $("<span class='spanStadisticas'>Balance</span>");
-	this.numSlots = $("<span class='spanStadisticas'>Puestos</span>");
-	this.html
-		.append(this.numIndividuos)
-		.append(this.numBalance)
-		.append(this.numSlots);
-
-	this.setPersonal = function(numPersonal){
-		estadisticas.numIndividuos.empty().append("Personal: " + numPersonal);
-	}
-	this.setBalance = function(numBalance){
-		estadisticas.numBalance.empty().append("Balance: " + numBalance);
-	//	console.log("personal:",estadisticas.numIndividuos[0].innerHTML,"balance:",numBalance , "Slots:", estadisticas.numSlots);
-	}
-	this.setSlots = function(numSlots){
-		estadisticas.numSlots = numSlots;
-	}
-
-	this.getHtml = function(){
-		return estadisticas.html;
-	}
-}
 
 
 ESTRUCTURA.Puesto = function(params){
 	var puesto = this;
-	
-	this.tipoPuesto = params.tipoPuesto;
-	this.nombre = params.tipoPuesto.lugares[0];
-
-	this.slotsMinimos = params.tipoPuesto.numeroSlot;
-	this.slotsLimitado =  params.tipoPuesto.limitado; //un -1 indica SIn LImite 
+	this.nombre = params.nombre ? params.nombre : "sin nombre";
+	this.slotsMinimos = params.slotsMinimos ? params.slotsMinimos : 0;
+	this.slotsMaximos = params.slotsMaximos ? params.slotsMaximos : this.slotsMinimos; //un -1 indica SIn LImite 
 	this.slots = [];
 
-	this.gruposAptos =  params.tipoPuesto.gruposAptos;
 
 	this.html = $("<div class='puesto'></div>");
 	this.htmlHeader = $("<div class='puestoHeader'>"+puesto.nombre+"</div>");
@@ -810,20 +725,7 @@ ESTRUCTURA.Persona = function(params){
 
 
 	this.getHtml = function(){
-		var newHtml = $("<div class='personaIcon'><img src=''></img></div>");
-
 		return persona.html;
 	}
-
-}
-
-
-ESTRUCTURA.TipoPuesto = function(params){
-	var tipoPuesto = this;
-	this.gruposAptos = params.gruposAptos ? params.gruposAptos : [];
-	this.turnoAbstracto = params.turnoAbstracto ? params.turnoAbstracto : {};
-	this.lugares = params.lugares ? params.lugares : [];
-	this.numeroSlot = params.numSlots ? params.numSlots  : 1;
-	this.limitado = params.limitado ? params.limitado  : true;
 
 }

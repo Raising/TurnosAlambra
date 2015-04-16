@@ -23,7 +23,7 @@ body{
 	width: 90%;
 	left: 5%;
 	top: 50px;
-	height: 580px;
+	height: 550px;
 	background-color: white;
 }
 
@@ -43,7 +43,7 @@ body{
 	top: 26px;
 	width: 99.75%;
 	right: 0.25%;
-	height: 500px;
+	height: 520px;
 }
 
 .side{
@@ -335,21 +335,4 @@ body{
 	text-align: center;
 	color:white;
 	overflow: hidden;
-}
-
-.cuadranteFoot{
-	position:absolute;
-	bottom: 10px;
-	width: 99.75%;
-	right:0.25%;
-	height: 40px;
-
-}
-
-.centralfoot{
-	position: absolute;
-	width: 73%;
-	right: 0;
-	height: 100%;
-	background-color: white;
 }
