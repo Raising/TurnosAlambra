@@ -173,6 +173,8 @@ TEMPDATA.turnos = {
 
 TEMPDATA.tiposPuesto = {};
 
+TEMPDATA.tiposPuestoFinde = {};
+
 
 
 for (var i = TEMPDATA.lugares.length - 1; i >= 0; i--) {
@@ -184,8 +186,40 @@ for (var i = TEMPDATA.lugares.length - 1; i >= 0; i--) {
 		}else{
 			gruposApt = ["GRUPO D PECIS","GRUPO E PECIS","GRUPO F PECIS"];
 		}
-		var newtipoPuesto = new ESTRUCTURA.TipoPuesto({gruposAptos:gruposApt,turnoAbstracto:turno,lugares:[TEMPDATA.lugares[i].nombre],numSlots: (Math.max(1,Math.floor(Math.random() * 7)-2)) ,limitado:true});
- 		TEMPDATA.tiposPuesto["Puesto_"+TEMPDATA.lugares[i].nombre+"_"+turno] = newtipoPuesto;
+
+		var newtipoPuesto = new ESTRUCTURA.TipoPuesto({gruposAptos:gruposApt,turnoAbstracto:turno,lugares:[TEMPDATA.lugares[i].nombre],numSlots: (Math.max(1,Math.floor(Math.random() * 6)-1)) ,limitado:true});
+ 		if (turno == "Iluminación"){
+ 			if (Math.random()> 0.8){
+ 				TEMPDATA.tiposPuestoFinde["Puesto_"+TEMPDATA.lugares[i].nombre+"_"+turno] = newtipoPuesto;
+ 			}
+ 		}else{
+ 			TEMPDATA.tiposPuestoFinde["Puesto_"+TEMPDATA.lugares[i].nombre+"_"+turno] = newtipoPuesto;	
+ 		}
+ 		
+	};
+	
+ };
+
+
+ for (var i = TEMPDATA.lugares.length - 1; i >= 0; i--) {
+
+	for (var turno in TEMPDATA.turnos) {
+		var gruposApt;
+		if (turno == "Mañana"){
+			gruposApt = ["GRUPO A PECIS","GRUPO B PECIS","GRUPO C PECIS"];
+		}else{
+			gruposApt = ["GRUPO D PECIS","GRUPO E PECIS","GRUPO F PECIS"];
+		}
+
+		var newtipoPuesto = new ESTRUCTURA.TipoPuesto({gruposAptos:gruposApt,turnoAbstracto:turno,lugares:[TEMPDATA.lugares[i].nombre],numSlots: (Math.max(1,Math.floor(Math.random() * 6)-2)) ,limitado:true});
+ 		if (turno == "Iluminación"){
+ 			if (Math.random()> 0.8){
+ 				TEMPDATA.tiposPuesto["Puesto_"+TEMPDATA.lugares[i].nombre+"_"+turno] = newtipoPuesto;
+ 			}
+ 		}else{
+ 			TEMPDATA.tiposPuesto["Puesto_"+TEMPDATA.lugares[i].nombre+"_"+turno] = newtipoPuesto;	
+ 		}
+ 		
 	};
 	
  }; 

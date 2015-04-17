@@ -1,6 +1,11 @@
 $(function(){
-
+	window.addEventListener('contextmenu', function (evt){evt.preventDefault();console.log(evt)}, false);
 	
+	/*$("body").html.on("contextmenu", function(event){
+			event.preventDefault();
+			console.log(evt.which);
+	});
+*/	
 	var diaSemana = ["Lun","Mar","Mie","Jue","Vie","Sab","Dom"];
 
 
@@ -17,10 +22,16 @@ $(function(){
 		for (var turno in TEMPDATA.turnos) {
 			puestosParaDia[turno] = [];
 		}
-
-		for (var tipoPuesto in TEMPDATA.tiposPuesto){
-			var nuevoPuesto = new ESTRUCTURA.Puesto({tipoPuesto:TEMPDATA.tiposPuesto[tipoPuesto]});
-			puestosParaDia[TEMPDATA.tiposPuesto[tipoPuesto].turnoAbstracto].push(nuevoPuesto);
+		if (i%7 >4){
+			for (var tipoPuesto in TEMPDATA.tiposPuestoFinde){
+				var nuevoPuesto = new ESTRUCTURA.Puesto({tipoPuesto:TEMPDATA.tiposPuestoFinde[tipoPuesto]});
+				puestosParaDia[TEMPDATA.tiposPuestoFinde[tipoPuesto].turnoAbstracto].push(nuevoPuesto);
+			}
+		}else{
+			for (var tipoPuesto in TEMPDATA.tiposPuesto){
+				var nuevoPuesto = new ESTRUCTURA.Puesto({tipoPuesto:TEMPDATA.tiposPuesto[tipoPuesto]});
+				puestosParaDia[TEMPDATA.tiposPuesto[tipoPuesto].turnoAbstracto].push(nuevoPuesto);
+			}
 		}
 
 		for (var turno in TEMPDATA.turnos) {
@@ -133,4 +144,11 @@ $(function(){
 		$("#modo_noche").removeClass("selected");
 		$(this).addClass("selected");
 	});
+
+	$("#imprimirDetalle").on("click",function(){
+		var impreso = $("<div class='informe'> INFORME DE TURNO </div>")
+		VISUAL.popUp({body:impreso});
+	});
+
+
 });
