@@ -21,10 +21,8 @@ TEMPDATA.lugares = [
 ];
 
 
-TEMPDATA.gruposPersonal = [
-
-
-	{nombre:"GRUPO A PECIS",cuadrante:"id",
+TEMPDATA.gruposPersonal = {
+"GRUPO A PECIS":{cuadrante:"id",
 	personal:[
 {nombre:"MARIA JOSÉ ÁLVAREZ CABALLERO"		,vacaciones:4,iluminaciones:0,estado:["D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D"]},
 {nombre:"Mª MAR  REINA  RETAMERO"			,vacaciones:4,iluminaciones:0,estado:["D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D"]},
@@ -45,7 +43,7 @@ TEMPDATA.gruposPersonal = [
 {nombre:"FERNANDO SANTIAGO ORTEGA"			,vacaciones:4,iluminaciones:0,estado:["D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D"]}
 ]},
 
-	{nombre:"GRUPO B PECIS",cuadrante:"id",
+"GRUPO B PECIS":{cuadrante:"id",
 	personal:[
 {nombre:"MANUELA BENÍTEZ AREVALO"			,vacaciones:4,iluminaciones:0,estado:["T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","D"]},
 {nombre:"JOSÉ DOMINGO MUÑOZ"				,vacaciones:4,iluminaciones:0,estado:["T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","D"]},
@@ -70,7 +68,7 @@ TEMPDATA.gruposPersonal = [
 ]},
 
 
-{nombre:"GRUPO C PECIS",cuadrante:"id",
+"GRUPO C PECIS":{cuadrante:"id",
 	personal:[
 {nombre:"CONCEPCIÓN DE LA HIGUERA MEZCUA"	,vacaciones:4,iluminaciones:0,estado:["T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","T","T","T","T"]},
 {nombre:"JESÚS FALERO LOPEZ"				,vacaciones:4,iluminaciones:0,estado:["T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","T","T","T","T"]},
@@ -88,7 +86,7 @@ TEMPDATA.gruposPersonal = [
 {nombre:"Mª DEL MAR BARROSO VALVERDE"		,vacaciones:4,iluminaciones:0,estado:["T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","T","T","T","T"]}
 ]},
 
-{nombre:"GRUPO D PECIS",cuadrante:"id",
+"GRUPO D PECIS":{cuadrante:"id",
 	personal:[
 {nombre:"LUIS A. FERNÁNDEZ JIMENEZ"			,vacaciones:4,iluminaciones:0,estado:["D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D"]},
 {nombre:"MARIO ESPINOSA SANCHEZ"			,vacaciones:4,iluminaciones:0,estado:["D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D"]},
@@ -111,7 +109,7 @@ TEMPDATA.gruposPersonal = [
 {nombre:"CONCEPCIÓN FERNÁNDEZ GÁLVEZ"		,vacaciones:4,iluminaciones:0,estado:["D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D"]}
 ]},
 
-{nombre:"GRUPO E PECIS",cuadrante:"id",
+"GRUPO E PECIS":{cuadrante:"id",
 	personal:[
 {nombre:"AGUSTÍN GALLARDO MARQUEZ"			,vacaciones:4,iluminaciones:0,estado:["T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","D"]},
 {nombre:"PEDRO HEREDIA HEREDIA"				,vacaciones:4,iluminaciones:0,estado:["T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","D"]},
@@ -135,7 +133,7 @@ TEMPDATA.gruposPersonal = [
 {nombre:"Mª BELÉN DÍEZ RUÍZ"				,vacaciones:4,iluminaciones:0,estado:["T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","D"]}
 ]},
 
-{nombre:"GRUPO F PECIS",cuadrante:"id",
+"GRUPO F PECIS":{cuadrante:"id",
 	personal:[
 {nombre:"Mª CARMEN LÓPEZ CONTRERAS"			,vacaciones:4,iluminaciones:0,estado:["T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","T","T","T","T"]},
 {nombre:"ANTONIA GONZÁLEZ MAGAÑAS"			,vacaciones:4,iluminaciones:0,estado:["T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","T","T","T","T"]},
@@ -154,5 +152,44 @@ TEMPDATA.gruposPersonal = [
 {nombre:"AMARO SANCHEZ ORTEGA"				,vacaciones:4,iluminaciones:0,estado:["T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","T","T","T","T"]},
 {nombre:"ANTONIO TIRADO BURGOS"				,vacaciones:4,iluminaciones:0,estado:["T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","D","T","T","T","T","D","T","T","T","T"]}
 ]}
-];
+};
+
+TEMPDATA.turnos = {
+	"Mañana":{
+		"inicio":"8:00",
+		"fin":"14:00",
+	},
+	"Tarde":{
+		"inicio":"14:00",
+		"fin":"19:00",
+	},
+	"Iluminación":{
+		"inicio":"19:00",
+		"fin":"21:00",
+	},
+}
+
+
+
+TEMPDATA.tiposPuesto = {};
+
+
+
+for (var i = TEMPDATA.lugares.length - 1; i >= 0; i--) {
+
+	for (var turno in TEMPDATA.turnos) {
+		var gruposApt;
+		if (turno == "Mañana"){
+			gruposApt = ["GRUPO A PECIS","GRUPO B PECIS","GRUPO C PECIS"];
+		}else{
+			gruposApt = ["GRUPO D PECIS","GRUPO E PECIS","GRUPO F PECIS"];
+		}
+		var newtipoPuesto = new ESTRUCTURA.TipoPuesto({gruposAptos:gruposApt,turnoAbstracto:turno,lugares:[TEMPDATA.lugares[i].nombre],numSlots: (Math.max(1,Math.floor(Math.random() * 7)-2)) ,limitado:true});
+ 		TEMPDATA.tiposPuesto["Puesto_"+TEMPDATA.lugares[i].nombre+"_"+turno] = newtipoPuesto;
+	};
+	
+ }; 
+
+console.log(TEMPDATA.tiposPuesto);
+ 
 

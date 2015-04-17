@@ -7,36 +7,45 @@ $(function(){
 	var minimapa = $("#miniMapa");
 	var numDias = 31
 	var dias = [];
+	var visualizadorActual= {};
 	for (var i = 1;i <= numDias; i++){
 
 		var newdia = new ESTRUCTURA.Dia({diaSemana:i%7,date:diaSemana[i%7]+" "+i});
-		var turnoM = new ESTRUCTURA.Turno({tipo:"maniana",date:"dia: "+ (i)});
-		var turnoT = new ESTRUCTURA.Turno({tipo:"tarde",date:"dia: "+ (i)});
-		var turnoN = new ESTRUCTURA.Turno({tipo:"noche",date:"dia: "+ (i)});
-		
-		turnoM.instertPuestosFromObject(TEMPDATA.lugares);
-		turnoT.instertPuestosFromObject(TEMPDATA.lugares);
-		turnoN.instertPuestosFromObject(TEMPDATA.lugares);
+		var puestosParaDia = {};
+		var turnosParaDia = {};
 
-		newdia.setTurno("maniana",	turnoM);
-		newdia.setTurno("tarde",	turnoT);
-		newdia.setTurno("noche",	turnoN);
+		for (var turno in TEMPDATA.turnos) {
+			puestosParaDia[turno] = [];
+		}
+
+		for (var tipoPuesto in TEMPDATA.tiposPuesto){
+			var nuevoPuesto = new ESTRUCTURA.Puesto({tipoPuesto:TEMPDATA.tiposPuesto[tipoPuesto]});
+			puestosParaDia[TEMPDATA.tiposPuesto[tipoPuesto].turnoAbstracto].push(nuevoPuesto);
+		}
+
+		for (var turno in TEMPDATA.turnos) {
+			turnosParaDia[turno] = new ESTRUCTURA.Turno({tipo:turno,date:"dia: "+ (i),diaNum:i});
+			turnosParaDia[turno].instertPuestosFromObject(puestosParaDia[turno]);
+
+			newdia.setTurno(turno,	turnosParaDia[turno]);
+		}	
 
 		dias.push(newdia);
 	}
-var vDetalle = new ESTRUCTURA.VisualizadorDetalle({dias:dias});
+	GLOBAL.vDetalle = new ESTRUCTURA.VisualizadorDetalle({dias:dias});
 	
-	var visualizadorActual = new ESTRUCTURA.Visualizador({dias:dias,detalle:vDetalle});
+	GLOBAL.visualizadorActual = new ESTRUCTURA.Visualizador({dias:dias,detalle:GLOBAL.vDetalle});
 	
-	visualizadorActual.reinsertHtml();
-	vDetalle.reinsertHtml();
+	GLOBAL.visualizadorActual.reinsertHtml();
+	GLOBAL.vDetalle.reinsertHtml();
 
-	var visualizadorHTML = visualizadorActual.getHtml();
-	$("#detalle").prepend(vDetalle.getHtml());
+	var visualizadorHTML = GLOBAL.visualizadorActual.getHtml();
+	$("#detalle").prepend(GLOBAL.vDetalle.getHtml());
 	
-	$("#central").prepend(visualizadorActual.getHtml());
+	$("#central").prepend(GLOBAL.visualizadorActual.getHtml());
 	
-	$("#cabeceraDias").prepend(visualizadorActual.getCabeceraDiasHtml());
+	$("#cabeceraDias").prepend(GLOBAL.visualizadorActual.getCabeceraDiasHtml());
+	$("#foot").prepend(GLOBAL.visualizadorActual.getFootTurnosHtml());
 	
 
   	for (var i = 1; i<= numDias ; i++){
@@ -47,7 +56,7 @@ var vDetalle = new ESTRUCTURA.VisualizadorDetalle({dias:dias});
   		minidia.on("click",function(){
   			var position = $(this)[0].innerText;
   			//TweenMax.to(visualizadorHTML, 0.75, {x:"-"+((position-1)*156), ease:Sine.easeOut});
-  			visualizadorActual.gotoDay(position);
+  			GLOBAL.visualizadorActual.gotoDay(position);
   			//vDetalle.gotoDay(position);
   			$(".miniDia").removeClass("selected");
   			$(this).addClass("selected");
@@ -56,74 +65,39 @@ var vDetalle = new ESTRUCTURA.VisualizadorDetalle({dias:dias});
 
 	}
 
-	var personal = [];
+	var personal = {};
 
 		//console.log(TEMPDATA.gruposPersonal);
 
-	for (var i = 0 ; i<TEMPDATA.gruposPersonal.length; i++){
-		var grupo = TEMPDATA.gruposPersonal[i];
-		//console.log(grupo);
-		for (var j = grupo.personal.length - 1; j >= 0; j--) {
-			var persona = new ESTRUCTURA.Persona(grupo.personal[j]);
-			personal.push(persona);
-		};
-	}
-
+	
 
 	for (var i = dias.length - 1; i >= 0; i--) {
-		var personalDisponible = [];
-		for (var j = personal.length - 1; j >= 0; j--) {
+
+
 		
-			if (personal[j].estado[i] == "T"){
-			
-				personalDisponible.push(personal[j]);
-			} 
-		};
-	//	console.log("dia: ", i," Numpersonas ",personalDisponible.length);
-		//turno maniana
-	//	console.log(personalDisponible.length);
 
-		for (var j = dias[i].turnoManiana.puestos.length - 1; j >= 0; j--) {
-			var puesto  = dias[i].turnoManiana.puestos[j];
-			for (var k = puesto.slots.length - 1; k >= 0; k--) {
-				var slot =  puesto.slots[k];
-				if (personalDisponible.length == 0){
 
-				}else{
-					var Random = Math.floor((Math.random() * personalDisponible.length));
-					slot.setLinkedElement(personalDisponible[Random]);
-					personalDisponible.splice(Random, 1);
-				}
-			};
-		};
-		// turno tarde
-			for (var j = dias[i].turnoTarde.puestos.length - 1; j >= 0; j--) {
-			var puesto  = dias[i].turnoTarde.puestos[j];
-			for (var k = puesto.slots.length - 1; k >= 0; k--) {
-				var slot =  puesto.slots[k];
-				if (personalDisponible.length == 0){
 
-				}else{
-				var Random = Math.floor((Math.random() * personalDisponible.length));
-				slot.setLinkedElement(personalDisponible[Random]);
-				personalDisponible.splice(Random, 1);
-				}
-			};
-		};
-		//turno noche
-			for (var j = dias[i].turnoNoche.puestos.length - 1; j >= 0; j--) {
-			var puesto  = dias[i].turnoNoche.puestos[j];
-			for (var k = puesto.slots.length - 1; k >= 0; k--) {
-				var slot =  puesto.slots[k];
-				if (personalDisponible.length == 0){
-			//		console.log("no se ha podido rellenar","noche" ,puesto.nombre);
-				}else{
-				var Random = Math.floor((Math.random() * personalDisponible.length));
-				slot.setLinkedElement(personalDisponible[Random]);
-				personalDisponible.splice(Random, 1);
-				}
-			};
-		};
+		
+		for (var turno in TEMPDATA.turnos){
+
+			for (var grupo in TEMPDATA.gruposPersonal){
+				personal[grupo] = [];
+				for (var j = TEMPDATA.gruposPersonal[grupo].personal.length - 1; j >= 0; j--) {
+					if( TEMPDATA.gruposPersonal[grupo].personal[j].estado[i] == "T"){
+						var persona = new ESTRUCTURA.Persona(TEMPDATA.gruposPersonal[grupo].personal[j]);
+						personal[grupo].push(persona);
+					}			
+				};
+			}
+
+
+		//	console.log(personal);
+			dias[i].turno[turno].asignarPersonal(personal);
+
+
+		}
+		
 
 	//	console.log(personalDisponible.length);
 
@@ -134,8 +108,8 @@ var vDetalle = new ESTRUCTURA.VisualizadorDetalle({dias:dias});
 
 
 	$("#modo_maniana").on("click",function(){
-		visualizadorActual.modo.maniana();
-		vDetalle.modo.maniana();
+		GLOBAL.visualizadorActual.modo.maniana();
+		GLOBAL.vDetalle.modo.maniana();
 		$("#modo_maniana").removeClass("selected");
 		$("#modo_tarde").removeClass("selected");
 		$("#modo_noche").removeClass("selected");
@@ -143,8 +117,8 @@ var vDetalle = new ESTRUCTURA.VisualizadorDetalle({dias:dias});
 	});
 
 	$("#modo_tarde").on("click",function(){
-		visualizadorActual.modo.tarde();
-		vDetalle.modo.tarde();
+		GLOBAL.visualizadorActual.modo.tarde();
+		GLOBAL.vDetalle.modo.tarde();
 			$("#modo_maniana").removeClass("selected");
 		$("#modo_tarde").removeClass("selected");
 		$("#modo_noche").removeClass("selected");
@@ -152,8 +126,8 @@ var vDetalle = new ESTRUCTURA.VisualizadorDetalle({dias:dias});
 	});
 
 	$("#modo_noche").on("click",function(){
-		visualizadorActual.modo.noche();
-		vDetalle.modo.noche();
+		GLOBAL.visualizadorActual.modo.noche();
+		GLOBAL.vDetalle.modo.noche();
 		$("#modo_maniana").removeClass("selected");
 		$("#modo_tarde").removeClass("selected");
 		$("#modo_noche").removeClass("selected");
