@@ -1,11 +1,11 @@
 $(function(){
-	window.addEventListener('contextmenu', function (evt){evt.preventDefault();console.log(evt)}, false);
+	//window.addEventListener('contextmenu', function (evt){evt.preventDefault();console.log(evt)}, false);
 	
-	/*$("body").html.on("contextmenu", function(event){
-			event.preventDefault();
-			console.log(evt.which);
+	$("body").on("contextmenu", function(event){
+			//event.preventDefault();
+			console.log(event);
 	});
-*/	
+
 	var diaSemana = ["Lun","Mar","Mie","Jue","Vie","Sab","Dom"];
 
 
@@ -57,8 +57,18 @@ $(function(){
 	
 	$("#cabeceraDias").prepend(GLOBAL.visualizadorActual.getCabeceraDiasHtml());
 	$("#foot").prepend(GLOBAL.visualizadorActual.getFootTurnosHtml());
-	
-
+	var mes = $("<div class='Mes'>JULIO</div>");
+	mes.on("contextmenu",function(){
+		event.preventDefault();
+			VISUAL.menuContextual(
+				{opciones:[
+					{ Titulo: "CAMBIO DE MES" , Operacion : function(){alert("Seleccion de calendario");
+				$("body > .menuContextual").remove();}}
+					],
+				event:event
+				});
+	});
+	minimapa.append(mes);
   	for (var i = 1; i<= numDias ; i++){
   		var minidia = $("<div class='miniDia'>"+i+"</div>");
   		if (i == 1){

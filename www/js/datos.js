@@ -211,7 +211,7 @@ for (var i = TEMPDATA.lugares.length - 1; i >= 0; i--) {
 			gruposApt = ["GRUPO D PECIS","GRUPO E PECIS","GRUPO F PECIS"];
 		}
 
-		var newtipoPuesto = new ESTRUCTURA.TipoPuesto({gruposAptos:gruposApt,turnoAbstracto:turno,lugares:[TEMPDATA.lugares[i].nombre],numSlots: (Math.max(1,Math.floor(Math.random() * 6)-2)) ,limitado:true});
+		var newtipoPuesto = new ESTRUCTURA.TipoPuesto({gruposAptos:gruposApt,turnoAbstracto:turno,lugares:[TEMPDATA.lugares[i].nombre],numSlots: (Math.max(1,Math.floor(Math.random() * 6)-2)) ,limitado:false});
  		if (turno == "Iluminación"){
  			if (Math.random()> 0.8){
  				TEMPDATA.tiposPuesto["Puesto_"+TEMPDATA.lugares[i].nombre+"_"+turno] = newtipoPuesto;

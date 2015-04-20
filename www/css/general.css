@@ -22,7 +22,7 @@ body{
 	position: absolute;
 	width: 90%;
 	left: 5%;
-	top: 80px;
+	top: 50px;
 	height: 580px;
 	background-color: white;
 }
@@ -96,13 +96,13 @@ body{
 	position: absolute;
 	
 	background-color: #888;
-	min-height: 520px;
+	min-height: 500px;
 }
 .visualizadorDetalle{
 	position: absolute;
 	
 	background-color: #888;
-	min-height: 520px;
+	min-height: 500px;
 	width: 100%;
 	
 }
@@ -126,6 +126,14 @@ body{
 	border-top: 1.5px solid brown;
 }
 
+.turno.selected{ 
+	border: 2px solid #B33A01;
+	box-shadow: inset 0 0 5px 0 #B33A01;
+}
+.turno.selected > div{
+	background-color: #ddd
+}
+
 .turnoDetalle{
 	float: none;
 	position: absolute;
@@ -142,6 +150,7 @@ body{
 	position: relative;
 	min-height: 26px;
 	margin-right: 2px;
+	margin-left: 2px;
 	margin-top: 1px;
 	background-color: white;
 	border: 1px solid #EEE;
@@ -303,7 +312,9 @@ body{
 }
 .cabeceraDia.selected{
 	color: white;
+	border: 2px solid #B33A01;
 	background-color: #B33A01;
+
 }
 
 .cabeceraDiasContainer{
@@ -432,6 +443,7 @@ body{
 	border-radius: 5px;
 	background-color: #eee;
 	box-shadow: 0 0 50px 500px #aaa, 0 0 30px 0 black;
+	z-index: 500;
 }
 
 .popupHead{
@@ -452,8 +464,104 @@ body{
 	text-align: center;
 }
 
+.popupHeadIcon:hover{
+	background-color: #aaa;
+}
+
+
 
 .popupBody{
 	width: 100%;
 	text-align: center;
+}
+.menuContextual{
+	z-index: 1000;
+	width: 110px;
+	background-color: grey;
+	position: absolute;
+}
+
+.contextualOption{
+	margin: 1px;
+	width: 108px;
+	font-size: 12px;
+	height: 15px;
+	background-color: #DDD;
+}
+
+
+.contextualOption:hover{
+	background-color: #999;
+
+}
+.personaEditor{
+	margin: 8px;
+}
+.cabeceraEditor{
+	height: 22px;
+	background-color: #449;
+	text-align: center;
+	border: 1px solid black;
+	margin-top: 20px;
+}
+
+.cuerpoEditor{
+	height: 22px;
+	background-color: #999;
+		border: 1px solid black;
+}
+.diasEditorPersona{
+	float: left;
+	width: 20px;
+	height: 18px;
+	padding-top: 2px;
+	margin: 1px;
+	font-size: 14px;
+	background-color: #DDD;
+}
+
+.estadoEditorPersona{
+	float: left;
+	width: 20px;
+	height: 18px;
+	padding-top: 2px;
+	margin: 1px;
+	font-size: 14px;
+	background-color: #DDD;
+}
+
+
+.estadoEditorPersona.azul{
+background: -moz-linear-gradient(-45deg, #74ebf2 0%, #38bded 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#74ebf2), color-stop(100%,#38bded)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg, #74ebf2 0%,#38bded 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg, #74ebf2 0%,#38bded 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg, #74ebf2 0%,#38bded 100%); /* IE10+ */
+background: linear-gradient(135deg, #74ebf2 0%,#38bded 100%); /* W3C */
+}
+.estadoEditorPersona.naranja{
+	background: -moz-linear-gradient(-45deg, #f2f475 0%, #efb237 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f2f475), color-stop(100%,#efb237)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg, #f2f475 0%,#efb237 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg, #f2f475 0%,#efb237 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg, #f2f475 0%,#efb237 100%); /* IE10+ */
+background: linear-gradient(135deg, #f2f475 0%,#efb237 100%); /* W3C */
+}
+.estadoEditorPersona.rojo{
+background: -moz-linear-gradient(-45deg, #f7ae76 0%, #ef3939 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f7ae76), color-stop(100%,#ef3939)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg, #f7ae76 0%,#ef3939 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg, #f7ae76 0%,#ef3939 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg, #f7ae76 0%,#ef3939 100%); /* IE10+ */
+background: linear-gradient(135deg, #f7ae76 0%,#ef3939 100%); /* W3C */
+}
+
+.Mes {
+	position: absolute;
+	top: 10px;
+	border-radius: 5px;
+	background-color: #B33A01;
+	left:40px;
+	color:white;
+	padding: 4px;
 }

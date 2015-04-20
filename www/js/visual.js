@@ -4,6 +4,8 @@ var VISUAL = {};
 
 VISUAL.popUp = function (params){
 	var pop = this;
+	$("body > .popup").remove();
+	console.log("creado popup",params);
 	this.html = $("<div class='popup'></div>");
 	this.head = $("<div class='popupHead'></div>");
 	this.body = $("<div class='popupBody'></div>");
@@ -13,9 +15,10 @@ VISUAL.popUp = function (params){
 	
 	this.body.append(params.body);
 
-	this.html.append(this.head)
+	this.html
+			.append(this.head)
 			.append(this.body);
-
+	console.log(this.html);
 	$("body").append(this.html);
 
 	this.closeIcon.on("click",function(){
@@ -28,16 +31,23 @@ VISUAL.popUp = function (params){
 */
 VISUAL.menuContextual = function(params){
 	var menu = this;
+	$("body > .menuContextual").remove();
 	this.html = $("<div class='menuContextual'></div>");
 	
+	var  nueva_opcion = $("<div class='contextualOption'> Cerrar </div>");
+		nueva_opcion.on("click",function(){menu.html.remove();});
+		this.html.append(nueva_opcion);
+
 	for (var i in params.opciones){
-		var  opcion = $("<div>"+params.opcion[i].texto+"</div>");
-		opcion.on("click",params.opcion[i].Operacion);
-		this.html.append(opcion);
+		var  nueva_opcion = $("<div class='contextualOption'>"+params.opciones[i].Titulo+"</div>");
+		nueva_opcion.on("click",params.opciones[i].Operacion);
+		this.html.append(nueva_opcion);
 	}
+	menu.html.css({top: params.event.clientY, left: params.event.clientX});
 	$("body").append(this.html);
 
-	("body").on("click",function(){
+	/*$("body").click(function(){
 		menu.html.remove();
-	});
+	});*/
+
 }
