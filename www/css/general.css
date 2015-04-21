@@ -117,7 +117,7 @@ body{
 
 .turno{
 	float: left;
-	width: 80px;
+	width: 110px;
 	min-height: 520px;
 	margin-left: 2px;
 	background-color: lightblue;
@@ -158,7 +158,7 @@ body{
 
 
 .puestoHeader{
-	width: 80px;
+	width: 60px;
 	position: absolute;
 	top: 1px;	
 	left: 1px;
@@ -199,18 +199,51 @@ body{
 	position: absolute;
 	right: 0.5px;
 	bottom:0.5px;
-	background-color: #B33A01;
+	
 	z-index: 4;
-	color: white;
-	font-size: 10;
-	border-radius: 50%;
+	color: black;
+	font-size: 8;
+	border-radius: 3px;
 	text-align: center;
 	height: 13px;
-	width: 14px;
-	padding-top:1px;
-	/*box-shadow: inset -1px -1px 1px 0 black, inset 1px 1px 0.5px 0 white;*/
+	padding: 3px;
+ 	min-width: 18px;
+	padding-top:4px;
+	box-shadow:  0px 0px 2px 0 black;
+	color:white;
 
+
+	background: -moz-linear-gradient(-45deg, #b4e391 0%, #61c419 50%, #b4e391 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#b4e391), color-stop(50%,#61c419), color-stop(100%,#b4e391)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg, #b4e391 0%,#61c419 50%,#b4e391 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg, #b4e391 0%,#61c419 50%,#b4e391 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg, #b4e391 0%,#61c419 50%,#b4e391 100%); /* IE10+ */
+background: linear-gradient(135deg, #b4e391 0%,#61c419 50%,#b4e391 100%); /* W3C */
 }
+
+.puestoSlotCompress.azul{
+	background: -moz-linear-gradient(-45deg, #b3dced 0%, #29b8e5 50%, #bce0ee 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#b3dced), color-stop(50%,#29b8e5), color-stop(100%,#bce0ee)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg, #b3dced 0%,#29b8e5 50%,#bce0ee 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg, #b3dced 0%,#29b8e5 50%,#bce0ee 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg, #b3dced 0%,#29b8e5 50%,#bce0ee 100%); /* IE10+ */
+background: linear-gradient(135deg, #b3dced 0%,#29b8e5 50%,#bce0ee 100%); /* W3C */
+color:white;
+font-weight: bold;
+}
+
+
+.puestoSlotCompress.rojo{background: -moz-linear-gradient(-45deg, #99281e 0%, #e8967d 7%, #ce3527 50%, #cc3420 51%, #e8967d 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#99281e), color-stop(7%,#e8967d), color-stop(50%,#ce3527), color-stop(51%,#cc3420), color-stop(100%,#e8967d)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg, #99281e 0%,#e8967d 7%,#ce3527 50%,#cc3420 51%,#e8967d 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg, #99281e 0%,#e8967d 7%,#ce3527 50%,#cc3420 51%,#e8967d 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg, #99281e 0%,#e8967d 7%,#ce3527 50%,#cc3420 51%,#e8967d 100%); /* IE10+ */
+background: linear-gradient(135deg, #99281e 0%,#e8967d 7%,#ce3527 50%,#cc3420 51%,#e8967d 100%); /* W3C */
+color:white;
+font-weight: bold;
+}
+
+
 
 .puestoSlot{
 	position: relative;
@@ -261,6 +294,18 @@ body{
 	margin: 2px;
 	text-align: center;
 	padding-top: 3px;
+}
+
+.miniDia.incidencia{
+	-webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+
+  
+      -webkit-box-shadow: 0px 0px 4px 2px #D50E0E;
+    -moz-box-shadow: 0px 0px 4px 2px #D50E0E;
+    box-shadow: 0px 0px 4px 2px #D50E0E;
 }
 
 .miniDia.selected{
@@ -378,13 +423,13 @@ body{
 .footer{
 	position: relative;
 	float: left;
-	width: 80px;
+	width: 110px;
 	margin:1px;
 	background-color: #DDD;
 
 }
 .estadisticasTurno{
-	width: 80px;
+	width: 110px;
 	position: relative;
 	border: 1px solid darkgrey;
 	height: 38px;

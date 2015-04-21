@@ -1,3 +1,4 @@
+var dias = [];
 $(function(){
 	//window.addEventListener('contextmenu', function (evt){evt.preventDefault();console.log(evt)}, false);
 	
@@ -11,11 +12,12 @@ $(function(){
 
 	var minimapa = $("#miniMapa");
 	var numDias = 31
-	var dias = [];
+	//var dias = [];
+
 	var visualizadorActual= {};
 	for (var i = 1;i <= numDias; i++){
 
-		var newdia = new ESTRUCTURA.Dia({diaSemana:i%7,date:diaSemana[i%7]+" "+i});
+		var newdia = new ESTRUCTURA.Dia({numero:i-1,diaSemana:i%7,date:diaSemana[i%7]+" "+i});
 		var puestosParaDia = {};
 		var turnosParaDia = {};
 
@@ -40,7 +42,7 @@ $(function(){
 
 			newdia.setTurno(turno,	turnosParaDia[turno]);
 		}	
-
+		newdia.comprobarIncidencias();
 		dias.push(newdia);
 	}
 	GLOBAL.vDetalle = new ESTRUCTURA.VisualizadorDetalle({dias:dias});
@@ -93,12 +95,6 @@ $(function(){
 	
 
 	for (var i = dias.length - 1; i >= 0; i--) {
-
-
-		
-
-
-
 		
 		for (var turno in TEMPDATA.turnos){
 
@@ -114,7 +110,7 @@ $(function(){
 
 
 		//	console.log(personal);
-			dias[i].turno[turno].asignarPersonal(personal);
+		dias[i].turno[turno].asignarPersonal(personal);
 
 
 		}
@@ -160,5 +156,10 @@ $(function(){
 		VISUAL.popUp({body:impreso});
 	});
 
+	$("#buscarProblemas").on("click",function(){
+		for (var i = 0 ; i< dias.length;i++){
+			dias[i].comprobarIncidencias();
+		}
+	});
 
 });
