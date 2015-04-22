@@ -1,4 +1,5 @@
 var dias = [];
+var personal = {};
 $(function(){
 	//window.addEventListener('contextmenu', function (evt){evt.preventDefault();console.log(evt)}, false);
 	
@@ -51,6 +52,9 @@ $(function(){
 	
 	GLOBAL.visualizadorActual.reinsertHtml();
 	GLOBAL.vDetalle.reinsertHtml();
+	GLOBAL.turno = "Mañana";
+	GLOBAL.diaActual = 0;
+
 
 	var visualizadorHTML = GLOBAL.visualizadorActual.getHtml();
 	$("#detalle").prepend(GLOBAL.vDetalle.getHtml());
@@ -79,35 +83,35 @@ $(function(){
   		minidia.on("click",function(){
   			var position = $(this)[0].innerText;
   			//TweenMax.to(visualizadorHTML, 0.75, {x:"-"+((position-1)*156), ease:Sine.easeOut});
+  			console.log(position);
   			GLOBAL.visualizadorActual.gotoDay(position);
   			//vDetalle.gotoDay(position);
-  			$(".miniDia").removeClass("selected");
-  			$(this).addClass("selected");
+  			//$(".miniDia").removeClass("selected");
+  			//$(this).addClass("selected");
   		});
 		minimapa.append(minidia);
 
 	}
 
-	var personal = {};
+	 personal = {};
 
 		//console.log(TEMPDATA.gruposPersonal);
 
-	
+		for (var grupo in TEMPDATA.gruposPersonal){
+				personal[grupo] = [];
+				for (var j = TEMPDATA.gruposPersonal[grupo].personal.length - 1; j >= 0; j--) {
+						var persona = new ESTRUCTURA.Persona(TEMPDATA.gruposPersonal[grupo].personal[j]);
+						personal[grupo].push(persona);
+				};
+		}
+
+	var personalDisp = {};
 
 	for (var i = dias.length - 1; i >= 0; i--) {
 		
 		for (var turno in TEMPDATA.turnos){
 
-			for (var grupo in TEMPDATA.gruposPersonal){
-				personal[grupo] = [];
-				for (var j = TEMPDATA.gruposPersonal[grupo].personal.length - 1; j >= 0; j--) {
-					if( TEMPDATA.gruposPersonal[grupo].personal[j].estado[i] == "T"){
-						var persona = new ESTRUCTURA.Persona(TEMPDATA.gruposPersonal[grupo].personal[j]);
-						personal[grupo].push(persona);
-					}			
-				};
-			}
-
+		
 
 		//	console.log(personal);
 		dias[i].turno[turno].asignarPersonal(personal);
@@ -119,14 +123,17 @@ $(function(){
 	//	console.log(personalDisponible.length);
 
 	};
-
-
-
+setTimeout(function() {for (var i = 0 ; i< dias.length;i++){
+			dias[i].comprobarIncidencias();
+		}
+}, 1000);
+	
 
 
 	$("#modo_maniana").on("click",function(){
 		GLOBAL.visualizadorActual.modo.maniana();
 		GLOBAL.vDetalle.modo.maniana();
+		GLOBAL.turno = "Mañana";
 		$("#modo_maniana").removeClass("selected");
 		$("#modo_tarde").removeClass("selected");
 		$("#modo_noche").removeClass("selected");
@@ -134,6 +141,8 @@ $(function(){
 	});
 
 	$("#modo_tarde").on("click",function(){
+
+		GLOBAL.turno = "Tarde";
 		GLOBAL.visualizadorActual.modo.tarde();
 		GLOBAL.vDetalle.modo.tarde();
 			$("#modo_maniana").removeClass("selected");
@@ -143,6 +152,8 @@ $(function(){
 	});
 
 	$("#modo_noche").on("click",function(){
+
+		GLOBAL.turno = "Noche";
 		GLOBAL.visualizadorActual.modo.noche();
 		GLOBAL.vDetalle.modo.noche();
 		$("#modo_maniana").removeClass("selected");
@@ -160,6 +171,29 @@ $(function(){
 		for (var i = 0 ; i< dias.length;i++){
 			dias[i].comprobarIncidencias();
 		}
+	});
+
+
+	$("#verPersonas").on("click",function(){
+		var resumenCompleto = $("<div class='resumenCompletoPersonas'></div>");
+
+
+
+		for (var grupo in personal){
+				for (var j = personal[grupo].length - 1; j >= 0; j--) {
+					
+					var persona = personal[grupo][j];
+					resumenCompleto.prepend(persona.getResumen());
+				};
+			}
+		VISUAL.popUp({body:resumenCompleto});
+
+	});
+
+	$("#recalcular").on("click",function(){
+	//	console.log(dias[GLOBAL.diaActual],dias[GLOBAL.diaActual].getTurno(GLOBAL.turno));
+		dias[GLOBAL.diaActual].getTurno(GLOBAL.turno).asignarPersonal(personal);
+
 	});
 
 });
