@@ -1,7 +1,8 @@
 body{
 	background-color: #EFEFEF;
 	width: 100%;
-	height: 100%
+	height: 100%;
+	margin:0px;
 	overflow:hidden;
 }
 
@@ -553,7 +554,6 @@ font-weight: bold;
 	border: 2px solid #B33A01;
 	border-radius: 5px;
 	background-color: #eee;
-	box-shadow: 0 0 50px 500px #aaa, 0 0 30px 0 black;
 	z-index: 500;
 }
 
@@ -587,14 +587,14 @@ font-weight: bold;
 }
 .menuContextual{
 	z-index: 1000;
-	width: 110px;
+	width: 170px;
 	background-color: grey;
 	position: absolute;
 }
 
 .contextualOption{
 	margin: 1px;
-	width: 108px;
+	width: 168px;
 	font-size: 12px;
 	height: 15px;
 	background-color: #DDD;
@@ -682,27 +682,29 @@ background: linear-gradient(135deg, #f7ae76 0%,#ef3939 100%); /* W3C */
 	width: 95%;
 	margin-left:2.5%;
 	margin-top: 10px;
-	background-color: #DDD;
-
+	background-color: #F0F0F0;
+	height: 400px;
+	overflow: scroll;
 }
 
 .resumenPersona{
 	position: relative;
-	height: 4px;
+	height: 11px;
 	border-bottom: 1px solid white;
 	width: 100%;
 }
 .resumenPixel{
-	width: 3px;
-	height: 3px;
+	width: 8px;
+	height: 8px;
 	float: left;
-	margin-right: 1px;	
+	margin-right: 1px;
+	margin-top: 1px;	
 	background-color: white;
 }
 .resumenNombe{
-	font-size: 3px;
-	width: 30px;
-	height: 3px;
+	font-size: 10px;
+	width: 170px;
+	height: 10px;
 	margin-right: 3px;
 	overflow: hidden;
 	float: left;
@@ -717,6 +719,7 @@ background: -o-linear-gradient(-45deg, #74ebf2 0%,#38bded 100%); /* Opera 11.10+
 background: -ms-linear-gradient(-45deg, #74ebf2 0%,#38bded 100%); /* IE10+ */
 background: linear-gradient(135deg, #74ebf2 0%,#38bded 100%); /* W3C */
 }
+
 .resumenPixel.naranja{
 	background: -moz-linear-gradient(-45deg, #f2f475 0%, #efb237 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f2f475), color-stop(100%,#efb237)); /* Chrome,Safari4+ */
@@ -732,4 +735,14 @@ background: -webkit-linear-gradient(-45deg, #f7ae76 0%,#ef3939 100%); /* Chrome1
 background: -o-linear-gradient(-45deg, #f7ae76 0%,#ef3939 100%); /* Opera 11.10+ */
 background: -ms-linear-gradient(-45deg, #f7ae76 0%,#ef3939 100%); /* IE10+ */
 background: linear-gradient(135deg, #f7ae76 0%,#ef3939 100%); /* W3C */
+}
+
+.total{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin:0;
+}
+.traslucido{
+	background-color: rgba(80,80,80,0.3);
 }

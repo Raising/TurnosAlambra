@@ -1169,8 +1169,11 @@ ESTRUCTURA.Slot = function(params){
 						$("body > .menuContextual").remove();
 						VISUAL.popUp({body:editor});
 					}},
-					{ Titulo: "Quitar del puesto" , Operacion : function(){console.log("click en menu contextual");
-				$("body > .menuContextual").remove();}},
+					{ Titulo: "Quitar del puesto" , Operacion : function(){
+						slot.emptyLinkedElement();
+						console.log("click en menu contextual");
+						$("body > .menuContextual").remove();
+					}},
 					{ Titulo: "Intercambiar " , Operacion : function(){console.log("click en menu contextual");
 				$("body > .menuContextual").remove();}}
 					],
@@ -1238,12 +1241,11 @@ ESTRUCTURA.Persona = function(params){
 		persona.editor = $("<div class= 'personaEditor'>"+persona.nombre+"</div>");
 		persona.cabeceraEditor = $("<div class='cabeceraEditor'></div>");
 		persona.cuerpoEditor = $("<div class='cuerpoEditor'></div>");
-		var resumenGlobal = $("<div class='iconContainer'><img class= 'iconMenuDetalle' src='img/personas.png'></img></div>");
-		resumenGlobal.on("click",function(){
+		persona.resumenGlobal = $("<div class='iconContainer' style='margin-top:5px'><img class= 'iconMenuDetalle' src='img/personas.png'></img></div>");
+		persona.resumenGlobal.on("click",function(){
 			var resumenCompleto = $("<div class='resumenCompletoPersonas'></div>");
 			for (var grupo in personal){
 					for (var j = personal[grupo].length - 1; j >= 0; j--) {
-						
 						var persona = personal[grupo][j];
 						resumenCompleto.prepend(persona.getResumen());
 					};
@@ -1258,7 +1260,7 @@ ESTRUCTURA.Persona = function(params){
 			persona.cabeceraEditor.append("<div class='diasEditorPersona'>"+i+"</div>");
 			persona.cuerpoEditor.append(estadoSimple.getHtml());
 		}
-		persona.cuerpoEditor.append(resumenGlobal);
+		persona.cuerpoEditor.append(persona.resumenGlobal);
 		persona.cabeceraEditor.click(function(){
 			console.log(persona.estado);
 		});
